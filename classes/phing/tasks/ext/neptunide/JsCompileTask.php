@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Jakub Laskowski
- * Date: 30.01.13
- * Time: 16:32
- * To change this template use File | Settings | File Templates.
- */
 
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
