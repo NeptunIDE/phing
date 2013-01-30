@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id$
+ * $Id: 1c51e37f5b2590517dd6d60a805ab2d0cda7cf6b $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -58,7 +58,7 @@ include_once 'phing/system/util/Register.php';
  *
  * @author    Andreas Aderhold <andi@binarycloud.com>
  * @author    Hans Lellelid <hans@xmpl.org>
- * @version   $Id$
+ * @version   $Id: 1c51e37f5b2590517dd6d60a805ab2d0cda7cf6b $
  * @package   phing
  */
 class Phing {
@@ -68,6 +68,8 @@ class Phing {
 
     /** Our current message output status. Follows Project::MSG_XXX */
     private static $msgOutputLevel = Project::MSG_INFO;
+
+    private static $dryRun = false;
 
     /** PhingFile that we are using for configuration */
     private $buildFile = null;
@@ -303,6 +305,11 @@ class Phing {
 
         if (false !== ($key = array_search('-verbose', $args, true))) {
             self::$msgOutputLevel = Project::MSG_VERBOSE;
+            unset($args[$key]);
+        }
+
+        if (false !== ($key = array_search('-dry', $args, true))) {
+            static::$dryRun = true;
             unset($args[$key]);
         }
 
@@ -1425,6 +1432,33 @@ class Phing {
     public static function shutdown() {
         self::restoreIni();
         self::getTimer()->stop();
+    }
+
+    public static function exec($command, &$output = array(), &$return = null)
+    {
+        if (static::$dryRun)
+        {
+            self::$out->write($command);
+            $return = 0;
+            return 0;
+        }
+        else
+        {
+            return exec($command, $output, $return);
+        }
+    }
+
+    public static function passthru($command, &$return)
+    {
+        if (static::$dryRun)
+        {
+            self::$out->write($command);
+            $return = 0;
+        }
+        else
+        {
+            return exec($command, $return);
+        }
     }
 
 }

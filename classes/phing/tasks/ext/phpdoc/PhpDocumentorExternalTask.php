@@ -1,7 +1,7 @@
 <?php
 
 /**
- * $Id$
+ * $Id: 5bcd73085da50e853a3f6dc6317fb2f5ef3c2687 $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,7 +31,7 @@ require_once 'phing/tasks/ext/phpdoc/PhpDocumentorTask.php';
  *
  * @author Michiel Rook <mrook@php.net>
  * @author Markus Fischer <markus@fischer.name>
- * @version $Id$
+ * @version $Id: 5bcd73085da50e853a3f6dc6317fb2f5ef3c2687 $
  * @package phing.tasks.ext.phpdoc
  */ 
 class PhpDocumentorExternalTask extends PhpDocumentorTask
@@ -91,7 +91,7 @@ class PhpDocumentorExternalTask extends PhpDocumentorTask
 
         $this->log("Running phpDocumentor...");
 
-        exec($this->programPath . " " . $arguments, $output, $return);
+        Phing::exec($this->programPath . " " . $arguments, $output, $return);
 
         if ($return != 0)
         {

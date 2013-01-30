@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id$
+ * $Id: b72d02e8f0d73e9a0533c249bcee161beeca5fb0 $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@ require_once 'phing/tasks/ext/ioncube/IoncubeComment.php';
  * @author Michiel Rook <mrook@php.net>
  * @author Andrew Eddie <andrew.eddie@jamboworks.com> 
  * @author Domenico Sgarbossa <sbraaaa@yahoo.it> 
- * @version $Id$
+ * @version $Id: b72d02e8f0d73e9a0533c249bcee161beeca5fb0 $
  * @package phing.tasks.ext.ioncube
  * @since 2.2.0
  */
@@ -561,7 +561,7 @@ class IoncubeEncoderTask extends Task
             $this->log("Command line: ".$encoder->__toString() . ' ' . $arguments);
         }
 
-        exec($encoder->__toString() . ' ' . $arguments . " 2>&1", $output, $return);
+        Phing::exec($encoder->__toString() . ' ' . $arguments . " 2>&1", $output, $return);
        
         if ($return != 0)
         {

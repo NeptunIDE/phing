@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id$
+ * $Id: 6fa71e6cc852cc1b1217990fd41512ccde4d198e $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +26,7 @@ require_once 'phing/tasks/ext/ioncube/IoncubeComment.php';
  * Invokes the ionCube "make_license" program
  *
  * @author Michiel Rook <mrook@php.net>
- * @version $Id$
+ * @version $Id: 6fa71e6cc852cc1b1217990fd41512ccde4d198e $
  * @package phing.tasks.ext.ioncube
  * @since 2.2.0
  */
@@ -158,7 +158,7 @@ class IoncubeLicenseTask extends Task
         
         $this->log("Running ionCube make_license...");
 
-        exec($makelicense->__toString() . " " . $arguments . " 2>&1", $output, $return);
+        Phing::exec($makelicense->__toString() . " " . $arguments . " 2>&1", $output, $return);
         
         if ($return != 0)
         {

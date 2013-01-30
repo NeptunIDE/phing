@@ -407,7 +407,7 @@ class ApiGenTask extends Task
         }
 
         // Execute ApiGen
-        exec(escapeshellcmd($this->executable) . ' ' . $this->constructArguments(), $output, $return);
+        Phing::exec(escapeshellcmd($this->executable) . ' ' . $this->constructArguments(), $output, $return);
 
         $logType = 0 === $return ? Project::MSG_INFO : Project::MSG_ERR;
         foreach ($output as $line) {

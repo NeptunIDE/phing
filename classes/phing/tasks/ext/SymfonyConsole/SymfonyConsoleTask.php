@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id$
+ *  $Id: 8c248a504d318df4ca1af576699f8c39b3bc261e $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@ require_once dirname(__FILE__) . "/Arg.php";
  * Symfony Console Task
  * @author nuno costa <nuno@francodacosta.com>
  * @license GPL
- * @version $Id$
+ * @version $Id: 8c248a504d318df4ca1af576699f8c39b3bc261e $
  * @package phing.tasks.ext.symfony
  */
 class SymfonyConsoleTask extends Task
@@ -166,7 +166,7 @@ class SymfonyConsoleTask extends Task
         $this->log("executing $cmd");
         $return = null;
         $output = array();
-        exec($cmd, $output, $return);
+        Phing::exec($cmd, $output, $return);
 
         $lines = implode("\r\n", $output);
         

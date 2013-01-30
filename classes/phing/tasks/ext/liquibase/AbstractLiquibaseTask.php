@@ -23,7 +23,7 @@ require_once 'phing/tasks/system/ExecTask.php';
  * Abstract Liquibase task. Base class for all Liquibase Phing tasks.
  *
  * @author Stephan Hochdoerfer <S.Hochdoerfer@bitExpert.de>
- * @version $Id$
+ * @version $Id: fbda3eccdd2ffd453eb097b1d74057a84f1a75d1 $
  * @since 2.4.10
  * @package phing.tasks.ext.liquibase
  */
@@ -177,7 +177,7 @@ abstract class AbstractLiquibaseTask extends Task
         $lbparams
         );
 
-        passthru($command);
+        Phing::passthru($command);
 
         return;
     }

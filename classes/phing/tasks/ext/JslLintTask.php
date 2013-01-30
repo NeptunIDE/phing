@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: b448058c7244156ae7eb314c64618de82ff831cc $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@ require_once 'phing/util/DataStore.php';
  * This class is based on Knut Urdalen's PhpLintTask.
  *
  * @author Stefan Priebsch <stefan.priebsch@e-novative.de>
- * @version $Id$
+ * @version $Id: b448058c7244156ae7eb314c64618de82ff831cc $
  * @package phing.tasks.ext
  */
 class JslLintTask extends Task
@@ -212,7 +212,7 @@ class JslLintTask extends Task
                 }
 
                 $messages = array();
-                exec($command.'"'.$file.'"', $messages, $return);
+                Phing::exec($command.'"'.$file.'"', $messages, $return);
                 
                 if ($return > 100) {
                     throw new BuildException("Could not execute Javascript Lint executable '{$this->executable}'");

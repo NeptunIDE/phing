@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  $Id$
+ *  $Id: 8faa5d49d6737e1ec886a398fa9b8fa4f2746d6a $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@ require_once 'phing/Task.php';
  * @author  Andreas Aderhold <andi@binarycloud.com>
  * @author  Hans Lellelid <hans@xmpl.org>
  * @author  Christian Weiske <cweiske@cweiske.de>
- * @version $Id$
+ * @version $Id: 8faa5d49d6737e1ec886a398fa9b8fa4f2746d6a $
  * @package phing.tasks.system
  */
 class ExecTask extends Task
@@ -277,9 +277,9 @@ class ExecTask extends Task
         $return = null;
 
         if ($this->passthru) {
-            passthru($this->realCommand, $return);
+            Phing::passthru($this->realCommand, $return);
         } else {
-            exec($this->realCommand, $output, $return);
+            Phing::exec($this->realCommand, $output, $return);
         }
 
         return array($return, $output);

@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id$
+ *  $Id: 96af59b9cbecaf7f146dffab1d0b5a806a56b47f $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +26,7 @@
  * license properties or it can use a template.
  *
  * @author    Petr Rybak <petr@rynawe.net>
- * @version   $Id$
+ * @version   $Id: 96af59b9cbecaf7f146dffab1d0b5a806a56b47f $
  * @package   phing.tasks.ext.zendguard
  * @since     2.4.3
  */
@@ -414,7 +414,7 @@ class ZendGuardLicenseTask extends Task
         $this->log('Creating license at ' . $this->outputFile);
 
         $this->log('Running: ' . $command, Project::MSG_VERBOSE);
-        $tmp = exec($command, $output, $return_var);
+        $tmp = Phing::exec($command, $output, $return_var);
 
         // Check for exit value 1. Zendenc_sign command for some reason
         // returns 0 in case of failure and 1 in case of success...

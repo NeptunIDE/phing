@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: a6b1f9af32db9ce789d4769fe0eb32dcaad8298b $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,7 +28,7 @@ require_once 'phing/system/io/FileWriter.php';
  *
  * @author   Knut Urdalen <knut.urdalen@telio.no>
  * @author   Stefan Priebsch <stefan.priebsch@e-novative.de>
- * @version  $Id$
+ * @version  $Id: a6b1f9af32db9ce789d4769fe0eb32dcaad8298b $
  * @package  phing.tasks.ext
  */
 class PhpLintTask extends Task {
@@ -235,7 +235,7 @@ class PhpLintTask extends Task {
                 $messages = array();
                 $errorCount = 0;
 
-                exec($command.'"'.$file.'" 2>&1', $messages);
+                Phing::exec($command.'"'.$file.'" 2>&1', $messages);
                 
                 for ($i = 0; $i < count($messages) - 1; $i++) {
                     $message = $messages[$i];

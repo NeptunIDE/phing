@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id$
+ * $Id: 8587519e78780cedff5bd5e689e02d5e3f34b08a $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -217,7 +217,7 @@ class FileSyncTask extends Task
 
         $output = array();
         $return = null;
-        exec($command, $output, $return);
+        Phing::exec($command, $output, $return);
 
         $lines = '';
         foreach ($output as $line) {

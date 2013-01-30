@@ -10,7 +10,7 @@
  * @author     Christian Weiske <cweiske@cweiske.de>
  * @license    LGPL v3 or later http://www.gnu.org/licenses/lgpl.html
  * @link       http://www.phing.info/
- * @version    SVN: $Id$
+ * @version    SVN: $Id: bc420f25ab51443575d2064ebc8b2d633a4b2f65 $
  */
 
 require_once 'phing/Task.php';
@@ -263,7 +263,7 @@ class rSTTask extends Task
             . ' 2>&1';
 
         $this->log('command: ' . $cmd, Project::MSG_VERBOSE);
-        exec($cmd, $arOutput, $retval);
+        Phing::exec($cmd, $arOutput, $retval);
         if ($retval != 0) {
             $this->log(implode("\n", $arOutput), Project::MSG_INFO);
             throw new BuildException('Rendering rST failed');

@@ -285,7 +285,7 @@ class PatchTask extends Task
 
 		$this->log('Applying patch: ' . $this->patchFile);
 
-		exec($cmd, $output, $exitCode);
+		Phing::exec($cmd, $output, $exitCode);
 
 		foreach ($output as $line)
 		{

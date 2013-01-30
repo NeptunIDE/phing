@@ -118,7 +118,7 @@ class JsCompileTask extends Task
         }
         $commandBase = 'java -jar ' . $this->compilerPath;
         //$commandBase = "closure-compiler";
-        exec($commandBase . ' --helpshort 2>&1', $output);
+        Phing::exec($commandBase . ' --helpshort 2>&1', $output);
         if (!preg_match('/"--helpshort" is not a valid option/', implode('', $output))) {
             throw new BuildException('Closure Compiler not found!');
         }
@@ -161,7 +161,7 @@ class JsCompileTask extends Task
 
     private function _exec($command) {
         $this->log('Minifying files with ' . $command);
-        exec($command . ' 2>&1', $output, $return);
+        Phing::exec($command . ' 2>&1', $output, $return);
         if ($return > 0) {
             $out_string = implode("\n", $output);
             $this->log("Error minifiying:\n{$command}\n{$out_string}", Project::MSG_ERR);
