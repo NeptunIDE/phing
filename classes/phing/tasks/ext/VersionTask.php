@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id$
+ * $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,7 +30,7 @@ require_once 'phing/Task.php';
  * Resulting version number is also published under supplied property.
  *
  * @author      Mike Wittje <mw@mike.wittje.de>
- * @version     $Id$ $Rev $Id$ $Author$
+ * @version     $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $ $Rev $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $ $Author$
  * @package     phing.tasks.ext
  */
 class VersionTask extends Task
@@ -57,6 +57,7 @@ class VersionTask extends Task
     const RELEASETYPE_MAJOR = 'MAJOR';
     const RELEASETYPE_MINOR = 'MINOR';
     const RELEASETYPE_BUGFIX = 'BUGFIX';
+    const RELEASETYPE_BUILD = 'BUILD';
 
     /**
      * Set Property for Releasetype (Minor, Major, Bugfix)
@@ -125,27 +126,36 @@ class VersionTask extends Task
         $newVersion = '';
 
         // Extract version
-        list($major, $minor, $bugfix) = explode(".", $filecontent);
+        list($major, $minor, $bugfix, $build) = explode(".", $filecontent);
 
         // Return new version number
         switch ($this->releasetype) {
             case self::RELEASETYPE_MAJOR:
-                $newVersion = sprintf("%d.%d.%d", ++$major,
+                $newVersion = sprintf("%d.%d.%d.%d", ++$major,
                                                   0,
-                                                  0);
+                                                  0,
+                                                  $build);
                 break;
 
             case self::RELEASETYPE_MINOR:
-                $newVersion = sprintf("%d.%d.%d", $major,
+                $newVersion = sprintf("%d.%d.%d.%d", $major,
                                                   ++$minor,
-                                                  0);
+                                                  0,
+                                                  $build);
                 break;
 
             case self::RELEASETYPE_BUGFIX:
-                $newVersion = sprintf("%d.%d.%d", $major,
+                $newVersion = sprintf("%d.%d.%d.%d", $major,
                                                   $minor,
-                                                  ++$bugfix);
+                                                  ++$bugfix,
+                                                  $build);
                 break;
+
+            case self::RELEASETYPE_BUILD:
+                $newVersion = sprintf("%d.%d.%d.%d", $major,
+                                                     $minor,
+                                                     $bugfix,
+                                                     ++$build);
         }
 
         return $newVersion;
@@ -167,11 +177,12 @@ class VersionTask extends Task
         $releaseTypes = array(
             self::RELEASETYPE_MAJOR,
             self::RELEASETYPE_MINOR,
-            self::RELEASETYPE_BUGFIX
+            self::RELEASETYPE_BUGFIX,
+            self::RELEASETYPE_BUILD
         );
 
         if (!in_array($this->releasetype, $releaseTypes)) {
-            throw new BuildException(sprintf('Unknown Releasetype %s..Must be one of Major, Minor or Bugfix',
+            throw new BuildException(sprintf('Unknown Releasetype %s..Must be one of Major, Minor, Bugfix or Build',
                                         $this->releasetype), $this->location);
         }
     }
@@ -194,9 +205,9 @@ class VersionTask extends Task
             throw new BuildException(sprintf('Supplied file %s is empty', $this->file), $this->location);
         }
 
-        // check for three-part number
+        // check for four-part number
         $split = explode('.', $content);
-        if (count($split) !== 3) {
+        if (count($split) !== 4) {
             throw new BuildException('Unknown version number format', $this->location);
         }
 
