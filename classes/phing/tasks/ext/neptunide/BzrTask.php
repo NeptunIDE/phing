@@ -73,7 +73,12 @@ abstract class BzrTask extends Task
             putenv('CURL_CLIENT_BUNLDE="'.$this->clientBundle.'"');
         }
 
-        Phing::passthru($command, $return);
+        $output = Phing::passthru($command, $return);
+		
+		if ($return  !== 0)
+        {
+            throw new BuildException("Error in running bzr merge, bzr returned ".$return);
+        }
 
         return $return;
     }

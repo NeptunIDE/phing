@@ -26,6 +26,8 @@ class BzrMergeTask extends BzrTask
 
     public function main()
     {
+		$options = array();
+		
         if (!empty($this->mergeRevision))
         {
             $options['-r'] = $this->mergeRevision;
@@ -33,13 +35,7 @@ class BzrMergeTask extends BzrTask
 
         $cmd = $this->createCommand("merge", $this->mergeFrom, $options);
 
-        $result = $this->executeCommand($cmd, true);
-
-        if ($result  !== 0)
-        {
-            throw new BuildException("Error in running bzr merge, bzr returned ".$result);
-        }
-
+        $this->executeCommand($cmd, true);
     }
 
 }

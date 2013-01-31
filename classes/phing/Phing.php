@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: 1c51e37f5b2590517dd6d60a805ab2d0cda7cf6b $
+ * $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -58,7 +58,7 @@ include_once 'phing/system/util/Register.php';
  *
  * @author    Andreas Aderhold <andi@binarycloud.com>
  * @author    Hans Lellelid <hans@xmpl.org>
- * @version   $Id: 1c51e37f5b2590517dd6d60a805ab2d0cda7cf6b $
+ * @version   $Id$
  * @package   phing
  */
 class Phing {
@@ -1438,7 +1438,7 @@ class Phing {
     {
         if (static::$dryRun)
         {
-            self::$out->write($command);
+            self::$out->write($command."\n");
             $return = 0;
             return 0;
         }
@@ -1452,12 +1452,12 @@ class Phing {
     {
         if (static::$dryRun)
         {
-            self::$out->write($command);
+            self::$out->write($command."\n");
             $return = 0;
         }
         else
         {
-            return exec($command, $return);
+            return passthru($command, $return);
         }
     }
 
