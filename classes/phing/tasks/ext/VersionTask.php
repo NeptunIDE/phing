@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $
+ * $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,7 +30,7 @@ require_once 'phing/Task.php';
  * Resulting version number is also published under supplied property.
  *
  * @author      Mike Wittje <mw@mike.wittje.de>
- * @version     $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $ $Rev $Id: 53453b21a5d05a7ce53a8525a286f2f05a86548d $ $Author$
+ * @version     $Id$ $Rev $Id$ $Author$
  * @package     phing.tasks.ext
  */
 class VersionTask extends Task
@@ -52,6 +52,8 @@ class VersionTask extends Task
      * @var string $property
      */
     private $property;
+	
+	private $value;
 
     /* Allowed Releastypes */
     const RELEASETYPE_MAJOR = 'MAJOR';
@@ -60,7 +62,7 @@ class VersionTask extends Task
     const RELEASETYPE_BUILD = 'BUILD';
 
     /**
-     * Set Property for Releasetype (Minor, Major, Bugfix)
+     * Set Property for Releasetype (Minor, Major, Bugfix, Build)
      * @param string  $releasetype
      */
     public function setReleasetype($releasetype)
@@ -77,6 +79,11 @@ class VersionTask extends Task
         $this->file = $file;
     }
 
+	public function setValue($value)
+	{
+		$this->value = $value;
+	}
+	
     /**
      * Set name of property to be set
      * @param $property
@@ -128,6 +135,29 @@ class VersionTask extends Task
         // Extract version
         list($major, $minor, $bugfix, $build) = explode(".", $filecontent);
 
+		if (!empty($this->value))
+		{
+			switch ($this->releasetype) 
+			{	
+				case self::RELEASETYPE_MAJOR:
+					$major = $this->value - 1;
+				break;
+				
+				case self::RELEASETYPE_MINOR:
+					$minor = $this->value - 1;
+                break;
+				
+				case self::RELEASETYPE_BUGFIX:
+					$bugfix = $this->value - 1;
+                break;
+				
+				case self::RELEASETYPE_BUILD:
+					$build = $this->value - 1;
+				break;
+			}
+
+		}
+		
         // Return new version number
         switch ($this->releasetype) {
             case self::RELEASETYPE_MAJOR:

@@ -67,19 +67,19 @@ abstract class BzrTask extends Task
 
     protected function executeCommand($command, $includeBundles = false)
     {
-        if ($includeBundles)
-        {
-            putenv('CURL_CA_BUNLDE="'.$this->caBundle.'"');
-            putenv('CURL_CLIENT_BUNLDE="'.$this->clientBundle.'"');
-        }
+		if ($includeBundles)
+		{
+			putenv('CURL_CA_BUNDLE="'.$this->caBundle.'"');
+			putenv('CURL_CLIENT_BUNDLE="'.$this->clientBundle.'"');
+		}
 
-        $output = Phing::passthru($command, $return);
+		$output = Phing::passthru($command, $return);
 		
 		if ($return  !== 0)
-        {
-            throw new BuildException("Error in running bzr merge, bzr returned ".$return);
-        }
+		{
+			throw new BuildException("Error in running bzr $command, bzr returned ".$return);
+		}
 
-        return $return;
+		return $return;
     }
 }
