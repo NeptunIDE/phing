@@ -69,8 +69,8 @@ abstract class BzrTask extends Task
     {
 		if ($includeBundles)
 		{
-			putenv('CURL_CA_BUNDLE="'.$this->caBundle.'"');
-			putenv('CURL_CLIENT_BUNDLE="'.$this->clientBundle.'"');
+			putenv('CURL_CA_BUNDLE='.$this->caBundle);
+			putenv('CURL_CLIENT_BUNDLE='.$this->clientBundle);
 		}
 
 		$output = Phing::passthru($command, $return);
