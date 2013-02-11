@@ -47,6 +47,11 @@ abstract class BzrTask extends Task
     protected function createCommand($bzrCommand, $argument = "", $options = array())
     {
         $args = array();
+		
+		if (is_array($argument))
+		{
+			$argument = join(" ", $argument);
+		}
 
         foreach ($options as $key => $option)
         {

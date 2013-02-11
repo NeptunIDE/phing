@@ -1,5 +1,8 @@
 <?php
 
+require_once 'phing/Task.php';
+require_once 'phing/tasks/ext/neptunide/BzrTask.php';
+
 class BzrCommitTask extends BzrTask
 {
 	protected $message;

@@ -827,6 +827,7 @@ class Phing {
         $msg .= "  -q -quiet              be extra quiet" . PHP_EOL;
         $msg .= "  -verbose               be extra verbose" . PHP_EOL;
         $msg .= "  -debug                 print debugging information" . PHP_EOL;
+		$msg .= "  -dry                   preform dry run (print commands that would be executed)" . PHP_EOL;
         $msg .= "  -longtargets           show target descriptions during build" . PHP_EOL;
         $msg .= "  -logfile <file>        use given file for log" . PHP_EOL;
         $msg .= "  -logger <classname>    the class which is to perform logging" . PHP_EOL;
