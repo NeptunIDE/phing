@@ -232,11 +232,18 @@ class VersionTask extends Task
 
         $content = file_get_contents($this->file);
         if (strlen($content) == 0) {
-            throw new BuildException(sprintf('Supplied file %s is empty', $this->file), $this->location);
+            // throw new BuildException(sprintf('Supplied file %s is empty', $this->file), $this->location);
+			$content = "0.0.0.0";
         }
 
         // check for four-part number
         $split = explode('.', $content);
+		
+		if (count($split) == 3)
+		{
+			$split[3] = 0;
+		}
+		
         if (count($split) !== 4) {
             throw new BuildException('Unknown version number format', $this->location);
         }
