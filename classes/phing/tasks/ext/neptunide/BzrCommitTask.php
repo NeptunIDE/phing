@@ -21,6 +21,17 @@ class BzrCommitTask extends BzrTask
     {
 		$options = array();
 		
+		$diffCmd = $this->createCommand("diff");
+		
+		$this->executeCommand($diffCmd, true, $output);
+		
+		if (empty($output))
+		{
+			$this->log("Diff returnet empty output. Assuming there is nothing to commit, aborting.");
+			
+			return;
+		}
+		
         if (!empty($this->message))
         {
             $options['-m'] = $this->message;

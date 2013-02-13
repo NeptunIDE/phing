@@ -65,12 +65,12 @@ abstract class BzrTask extends Task
             }
         }
 
-        $cmd = $this->bzrPath.' '.$bzrCommand.' '.$argument.' '.join(' ', $args);
+        $cmd = $this->bzrPath.' '.$bzrCommand.' '.$argument.' '.join(' ', $args)." 2>&1";
 
         return $cmd;
     }
 
-    protected function executeCommand($command, $includeBundles = false)
+    protected function executeCommand($command, $includeBundles = false, $output = null)
     {
 		if ($includeBundles)
 		{
@@ -78,9 +78,17 @@ abstract class BzrTask extends Task
 			putenv('CURL_CLIENT_BUNDLE='.$this->clientBundle);
 		}
 
-		$output = Phing::passthru($command, $return);
+		Phing::exec($command, $output, $return);
 		
-		if ($return  !== 0)
+		if (is_array($output))
+		{
+			foreach ($output as $line)
+			{
+				$this->log($line);
+			}
+		}
+		
+		if ($return !== 0)
 		{
 			throw new BuildException("Error in running bzr $command, bzr returned ".$return);
 		}
