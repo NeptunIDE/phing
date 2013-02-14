@@ -126,7 +126,7 @@ class JsCompileTask extends Task
                         $command .= ' --js=' . $inputPath;
                         $command .= " --js_output_file={$inputPath}.min";
                         $this->_exec($command);
-                        rename("{$inputPath}.min", $inputPath);
+                        // rename("{$inputPath}.min", $inputPath);
                     }
                 } else {
                     $command = $commandBase;
