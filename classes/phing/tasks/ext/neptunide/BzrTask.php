@@ -70,7 +70,7 @@ abstract class BzrTask extends Task
         return $cmd;
     }
 
-    protected function executeCommand($command, $includeBundles = false, $output = null)
+    protected function executeCommand($command, $includeBundles = false, &$output = null)
     {
 		if ($includeBundles)
 		{
