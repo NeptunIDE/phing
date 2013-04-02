@@ -18,6 +18,8 @@ abstract class BzrTask extends Task
 
     protected $caBundle;
     protected $clientBundle; /* This is only supported by special NeptunIDE hacked version of Bazzar */
+	
+	protected $autoFail = true;
 
     public function setBzrPath($bzrPath)
     {
@@ -43,6 +45,11 @@ abstract class BzrTask extends Task
     {
         $this->clientBundle = $clientBundle;
     }
+	
+	public function setAutoFail($af)
+	{
+		$this->autoFail = (bool)$af;
+	}
 
     protected function createCommand($bzrCommand, $argument = "", $options = array())
     {
@@ -88,7 +95,7 @@ abstract class BzrTask extends Task
 			}
 		}
 		
-		if ($return !== 0)
+		if ($return !== 0 && $this->autoFail)
 		{
 			throw new BuildException("Error in running bzr $command, bzr returned ".$return);
 		}
