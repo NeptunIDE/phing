@@ -154,7 +154,7 @@ class JsCompileTask extends Task
 
     private function _exec($command) {
         $this->log('Minifying files with ' . $command);
-        Phing::exec($command . ' 2>&1', $output, $return);
+        Phing::exec($command . '--jscomp_off=internetExplorerChecks 2>&1', $output, $return);
         if ($return > 0) {
             $out_string = implode("\n", $output);
             $this->log("Error minifiying:\n{$command}\n{$out_string}", Project::MSG_ERR);
